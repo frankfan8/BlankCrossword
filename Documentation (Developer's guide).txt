@@ -1,0 +1,97 @@
+﻿Overview
+
+
+The Blind Crossword uses three classes that incorporate both object-oriented and event-driven programming to create a simple yet challenging word game. 
+
+
+Classes:
+
+
+The BlindCrossword class, which contains the main method as well as all the methods for the title screen, instructions, the 3 levels, and the congratulatory screen
+
+
+Methods:
+
+
+Main method (static void)
+        The main method sets the minimum, maximum, and preferred size of the frame to be 900x700 pixels so the user can’t adjust the size. It then calls the title screen method. 
+
+
+Title screen + instructions (static void)
+        A panel called titlescreen is created and added to the JFrame, frame. The panel has no layout manager (null layout), and is set to be 900 p x 700 p. The background of the panel created in this method is a JLabel that containing the image icon of the background image. The button titled “Enter” is a JButton, with a set position and size. When clicked, the current panel is removed, and the instructions void is called. The instructions method follows the same logic as the titlescreen method, except, when the button titled “Play” is clicked, the instructions panel is removed, and the level1 method is called. 
+
+
+Levels
+        Each level has its own method that is called once the user’s solution to the previous puzzle is deemed correct. For each puzzle, the background photo is once again a Jlabel with an image icon added to that level’s panel. The submit button is a Jbutton that is added in the panel as well. Then the 8x8 crossword board is created using the various box constructors that are described below. 
+Once the 64 unique boxes are created, the focus listeners are defined. This is used so that when the textfield of a box is in focus, it and the other boxes with the same answer/letter will all be highlighted, showing to the user that they contain the same letters. We have set it so the highlight colour is cyan. The focus listeners only have to be implemented once for every unique letter, since the boxes that are highlighted will be the same
+        Next the actions listeners are defined, and must be done for every box that will receive an input. This ensures that if the user inputs a letter in a box, every other box that would contain the same letter also receives the same “input”. This is done by setting the input string of the box and all the connected boxes to the character inputted, as well as setting the text displayed in each of the connected boxes to the inputted letter. This must be done for every box as every box that is connected needs to be able to set the input for the others, and this can only be done by making a action listener for every box.
+        Finally the action listener for the submit button is defined, which first checks to see if the letter inputted is the same as the letter in the string parameter of the input box constructor. This checks all the boxes with different letters, as it is assumed that the boxes that are connected will also have the same letter as its input. Once that is confirmed, the current panel is removed and is replaced with the next, or the congratulatory screen after the last level.
+
+
+Congratulatory screen
+        The congratulatory screen is made up of a single panel with a JLabel, a JButton, and an AudioInputStream. 
+        We declared a button using the same method in the previous panels that would take the player back to the title screen should they choose to do so.
+        We inputted an image as a JLabel - using the same method we used for the title screen - as the final end-game panel.
+We imported the javax.sound package in order to be able to play the victory song at the end of the program. Here, we use exception handling to call on “congratulations.wav” and use AudioInputStream and clip.open() to play the .wav file. We catch exception e. Should the computer not find a “congratulations.wav” in the folder, it will print out “Unable to open file” in the terminal.
+
+
+
+
+The JTextFieldLimit class prevents user from inputting more than 1 letter in the box. This was done by extending the PlainDocument class which changes the behaviour override. By accepting an integer for JTextField, we set the maximum number of characters allowed in that JTextField. 
+
+
+The Box class, which contains five different constructors for each type of box used in the program. Using three of the box constructors, one for vowels, one for input areas (consonants), and one for boxes that will contain nothing (the null boxes). In the end there are 64 boxes to make the crossword and another 26 for the letter bank. Each box has their specific characteristics. All the boxes are JTextField that are changed according to which constructor is called.
+
+
+Constructors
+
+
+1. The vowel box constructor has the signature “public Box (int a, int b, String text, JPanel panel, boolean vowel)”, where a and b are the coordinates of the box, the text is the vowel that will be displayed, the panel that it will be put on, a boolean that simply differentiates the constructor from the box used to accept input. In the constructors, the text of the vowel inputted is displayed, the JTextField is set to have a white background, it is set to be uneditable, and the text color is set to be gray. The font used is Serif Sans, Bold, size 55. The actual boxes have dimensions of 75p x 75p.
+
+
+2. The input box constructor has the signature “public Box (int a, int b, String text, JPanel panel)”, which is the same as the vowel boxes except the boolean vowel is removed, so that it is differentiated from the vowel boxes. Since this box is what will be used when the user inputs their letter, it also contains the string variable “input”, which is set in the level methods when the user inputs the letter. The boxes are set to be editable and have nothing displayed in the box when started. The letter that is inputted is automatically set to a capital with the added keylistener that is in the constructor. It essential waits until the inputted letter key is released then changes the letter into capital if possible. The font used is the same as for vowels, just in a black font instead of grey to differentiate which letters are editable and which are not. 
+
+
+3. The null box constructor has the signature “public Box (int a, int b, JPanel panel, boolean nothing)” and are boxes of the same dimensions as the previous two boxes. They are set to be uneditable and have a black background. The boolean at the end is meant to differentiate it from the letterbank box constructor.
+
+
+4. The letter box constructor has the signature “public Box (int a, int b, JPanel panel)” and are the boxes used in the letterbank. They are smaller than the other boxes used, with dimensions of 42p x 42p. Similar to the vowels, they are not editable and display their letter. Whether or not the letter is displayed on the letter bank of each specific level is determined by the letterbank constructor.
+
+
+5. The letterbank constructor has the signature of “public Box (String letters, JPanel panel)” and is what creates the whole letter bank. Using 26 letter boxes (using the constructor above) with set positions the letter bank takes it shape on the right side of the board. However, in order to determine which letters should appear according to whether or not the letters are in the respective level, we used the string “letters” which was inputted in the constructor. This string contains all the letters that are used in the puzzle. In our constructor, we implemented 21 if statements (ignoring the vowels, which will never be on the letter bank since they will always be on the puzzle already) that checked each letter to see if it was in the string. If not, then it would set the text displayed to be a blank string.
+
+
+
+
+
+
+
+
+Suggestions for improvement
+* A timer would have been a quality-of-gameplay change and helpful for the player
+* Having letters removed from the letter bank once the player inputs that letter
+* Having letters placed back into the letter bank if the player removes that letter from the crossword
+* More aesthetically pleasing buttons/boxes
+* Animations for the Title and Congratulation screens
+* Increase efficiency in code
+   * Declaring boxes
+   * Focus highlighters
+   * Action listeners
+   * more classes
+* A script to randomly generate crosswords while maintaining functionality
+
+
+Below are the solutions for the crosswords:
+
+
+Level 1
+  
+
+
+
+Level 2
+  
+
+
+
+Level 3

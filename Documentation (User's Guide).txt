@@ -1,0 +1,22 @@
+﻿Welcome to Blind Crossword, a game designed by Frank Fan, Gabriel Luo, and Jasmine Zhu, students from Marc Garneau C.I. attending the TOPS program.
+
+
+Getting Started
+
+
+Download the zipped folder named ‘BlindCrossword,’ and double click on the “BlindCrossword” executable jar file. If this does not work, find the ‘src’ folder in the zipped folder, and run the “BlindCrossword” java file in your IDE. The title screen should appear, and all you have to do is “Enter”... if you dare.
+
+
+Instructions
+
+
+In this crossword, only the vowels are given and there are no clues. The only hint you get is which boxes contain the same letter. The goal of the game is to put letters in a way that all the boxes going vertically and horizontally form words. The letter box on the left shows the letters that are in the puzzle.The vowels cannot be changed and the black boxes indicate that there should not be any letters in them. By clicking on the text boxes, ones that contain the same letter will highlight. When you input a letter into one of the spaces, the program will automatically convert it into a capital letter and pressing enter will input the character in that box into any other boxes that are supposed to contain the same letter. You cannot input more than 1 letter in the box for obvious reasons. If you input something that is not a letter, the program will still run, but the answer will obviously not be correct. Once you have inputted all the letters in their right spot, press the “Submit” button in the bottom right under the word bank. The program will check to see if your answers are right, and if it is, it will send you to the next level. There are three levels in total, and a little surprise at the end.
+
+
+Limitations and Bugs
+
+
+* The letters in the letter bank do not disappear when you use them
+* You MUST press enter after inputting each letter and after deleting letters. The program will not read your input if you only type the letter in or press backspace/delete.
+* If you press enter right after you input a lowercase letter too quickly, the program won’t be able to convert it into a capital letter and you may have one or more boxes with the lowercase version and one with the uppercase. If this happens, simply re-enter the letter and press enter a little slower. All the letters must be capitals in order for the program to properly check if the puzzle is completed
+* The program may experience some slight lag when loading the levels

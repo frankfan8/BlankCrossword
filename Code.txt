@@ -1,0 +1,2209 @@
+﻿import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import javax.swing.text.PlainDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+
+
+import javax.swing.border.Border; 
+import javax.swing.BorderFactory;
+import java.io.File;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
+
+public class GUITest1 extends JFrame{
+        public static void main(String[] args) {
+            JFrame frame = new JFrame();
+            //giving the frame properties
+            frame.setLayout(null);
+            frame.setVisible(true);
+            frame.setPreferredSize(new Dimension(900, 700));
+            frame.setMinimumSize(new Dimension (900, 700));
+            frame.setMaximumSize(new Dimension (900, 700));
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            //adding the panel of the first level to this window
+            titlescreen(frame);
+        }
+   public static void titlescreen(JFrame frame) {
+           JPanel panelt = new JPanel();
+           JButton enter = new JButton("ENTER");
+           Font font1 = new Font("Courier New", Font.BOLD, 30);
+           JLabel background = new JLabel(new ImageIcon("title.jpg"));
+           background.setBounds(0, 0, 900, 700);
+           frame.add(panelt); //adding the panel
+           
+           panelt.add(enter);
+           panelt.add(background);
+           panelt.setVisible(true);
+           panelt.setLayout(null);
+           panelt.setSize(new Dimension(900, 700));
+           
+           enter.setVisible(true);
+           enter.setBounds(519, 415, 125, 75);
+           enter.setFont(font1);
+           frame.pack();
+           
+           enter.addActionListener(new ActionListener() {
+               public void actionPerformed(ActionEvent e) {             
+                     frame.getContentPane().remove(panelt); //remove this level's panel
+                     instructions(frame);
+                     frame.pack();
+               }
+         });
+   }
+   public static void instructions(JFrame frame) {
+           JPanel paneli = new JPanel();
+           JButton play = new JButton("PLAY");
+           JLabel background = new JLabel(new ImageIcon("instructions.jpg"));
+           Font font1 = new Font("Courier New", Font.BOLD, 30);
+           background.setBounds(0, 0, 900, 700);
+           frame.add(paneli);
+           
+           paneli.add(play);
+           paneli.add(background);
+           paneli.setVisible(true);
+           paneli.setLayout(null);
+           paneli.setSize(new Dimension(900, 700));
+           
+           play.setVisible(true);
+           play.setBounds(519, 415, 125, 75);
+           play.setFont(font1);
+           frame.pack();
+           
+           play.addActionListener(new ActionListener() {
+               public void actionPerformed(ActionEvent e) {             
+                     frame.getContentPane().remove(paneli); //remove this level's panel
+                     level1(frame);
+                     frame.pack();
+               }
+         });
+   }
+        public static void level1(JFrame frame) {
+            JPanel panel1 = new JPanel();
+            JButton submit = new JButton("Submit");
+            JLabel background = new JLabel(new ImageIcon("blank.jpg"));
+            Font font1 = new Font("Courier New", Font.BOLD, 12);
+            background.setBounds(0, 0, 900, 700);
+            frame.add(panel1);
+            panel1.add(submit);
+            panel1.add(background);
+            panel1.setVisible(true);
+            panel1.setLayout(null);
+            panel1.setSize(new Dimension(900, 700));
+            
+            submit.setFont(font1);
+            submit.setVisible(true);
+            submit.setBounds(727, 620, 80, 30); //the action listener method for the submit button is defined at the end
+            
+            Box letterbank = new Box("M, C, R, D, G, N, S, Y, P, W,  L, H, T", panel1);
+            
+//---------------------------adding the boxes----------------------------------------------------------------------------------
+            Box box1 = new Box (50, 50, panel1, true);
+            Box box2 = new Box (125, 50, "M", panel1);
+            Box box3 = new Box (200, 50, panel1, true);
+            Box box4 = new Box (275, 50, panel1, true);
+            Box box5 = new Box (350, 50, panel1, true);
+            Box box6 = new Box (425, 50, panel1, true);
+            Box box7 = new Box (500, 50, panel1, true);
+            Box box8 = new Box (575, 50, panel1, true);
+            
+            Box box9 = new Box (50, 125, "C", panel1);
+            Box box10 = new Box (125, 125, "A", panel1, true);
+            Box box11 = new Box (200, 125, "R", panel1);
+            Box box12 = new Box (275, 125, "D", panel1);
+            Box box13 = new Box (350, 125, panel1, true);
+            Box box14 = new Box (425, 125, panel1, true);
+            Box box15 = new Box (500, 125, panel1, true);
+            Box box16 = new Box (575, 125, panel1, true);
+            box10.field.setEditable(false);
+            box10.field.setText("A");
+            
+            Box box17 = new Box (50, 200, panel1, true);
+            Box box18 = new Box (125, 200, "G", panel1);
+            Box box19 = new Box (200, 200, panel1, true);
+            Box box20 = new Box (275, 200, "R", panel1);
+            Box box21 = new Box (350, 200, "U", panel1, true);
+            Box box22 = new Box (425, 200, "N", panel1);
+            Box box23 = new Box (500, 200, "E", panel1, true);
+            Box box24 = new Box (575, 200, "S", panel1);
+            box21.field.setEditable(false);
+            box21.field.setText("U");
+            box23.field.setEditable(false);
+            box23.field.setText("E");
+            
+            Box box25 = new Box (50, 275, panel1, true);
+            Box box26 = new Box (125, 275, "E", panel1, true);
+            Box box27 = new Box (200, 275, panel1, true);
+            Box box28 = new Box (275, 275, "U", panel1, true);
+            Box box29 = new Box (350, 275, panel1, true);
+            Box box30 = new Box (425, 275, "Y", panel1);
+            Box box31 = new Box (500, 275, panel1, true);
+            Box box32 = new Box (575, 275, "P", panel1);
+            box26.field.setEditable(false);
+            box26.field.setText("E");
+            box28.field.setEditable(false);
+            box28.field.setText("U");
+            
+            Box box33 = new Box (50, 350, panel1, true);
+            Box box34 = new Box (125, 350, panel1, true);
+            Box box35 = new Box (200, 350, panel1, true);
+            Box box36 = new Box (275, 350, "I", panel1, true);
+            Box box37 = new Box (350, 350, panel1, true);
+            Box box38 = new Box (425, 350, "M", panel1);
+            Box box39 = new Box (500, 350, panel1, true);
+            Box box40 = new Box (575, 350, "E", panel1, true);
+            box36.field.setEditable(false);
+            box36.field.setText("I");
+            box40.field.setEditable(false);
+            box40.field.setText("E");
+            
+            Box box41 = new Box (50, 425, "W", panel1);
+            Box box42 = new Box (125, 425, "A", panel1, true);
+            Box box43 = new Box (200, 425, "N", panel1);
+            Box box44 = new Box (275, 425, "D", panel1);
+            Box box45 = new Box (350, 425, panel1, true);
+            Box box46 = new Box (425, 425, "P", panel1);
+            Box box47 = new Box (500, 425, panel1, true);
+            Box box48 = new Box (575, 425, "L", panel1);
+            box42.field.setEditable(false);
+            box42.field.setText("A");
+            
+            Box box49 = new Box (50, 500, panel1, true);
+            Box box50 = new Box (125, 500, "S", panel1);
+            Box box51 = new Box (200, 500, panel1, true);
+            Box box52 = new Box (275, 500, panel1, true);
+            Box box53 = new Box (350, 500, panel1, true);
+            Box box54 = new Box (425, 500, "H", panel1);
+            Box box55 = new Box (500, 500, panel1, true);
+            Box box56 = new Box (575, 500, "L", panel1);
+            
+            Box box57 = new Box (50, 575, "G", panel1);
+            Box box58 = new Box (125, 575, "H", panel1);
+            Box box59 = new Box (200, 575, "O", panel1, true);
+            Box box60 = new Box (275, 575, "S", panel1);
+            Box box61 = new Box (350, 575, "T", panel1);
+            Box box62 = new Box (425, 575, "S", panel1);
+            Box box63 = new Box (500, 575, panel1, true);
+            Box box64 = new Box (575, 575, panel1, true);
+            box59.field.setEditable(false);
+            box59.field.setText("O");
+            //insert setTexts for vowels
+            frame.pack();
+            
+//-------------------defining the focus listener methods--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            FocusListener highlighterM, highlighterC, highlighterR, highlighterD, highlighterG, highlighterN, highlighterS, highlighterY, highlighterP, highlighterW, highlighterL, highlighterH, highlighterT;
+            highlighterM = new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    box2.field.setBackground(Color.CYAN);
+                    box38.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    box2.field.setBackground(Color.WHITE);
+                    box38.field.setBackground(Color.WHITE);
+                }
+            };
+            highlighterC = new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    box9.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    box9.field.setBackground(Color.WHITE);
+                }
+            };
+            highlighterR = new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    box11.field.setBackground(Color.CYAN);
+                    box20.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    box11.field.setBackground(Color.WHITE);
+                    box20.field.setBackground(Color.WHITE);
+                }
+            };
+            highlighterD = new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    box12.field.setBackground(Color.CYAN);
+                    box44.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    box12.field.setBackground(Color.WHITE);
+                    box44.field.setBackground(Color.WHITE);
+                }
+            };
+            highlighterG = new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    box18.field.setBackground(Color.CYAN);
+                    box57.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    box18.field.setBackground(Color.WHITE);
+                    box57.field.setBackground(Color.WHITE);
+                }
+            };
+            highlighterN = new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    box22.field.setBackground(Color.CYAN);
+                    box43.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    box22.field.setBackground(Color.WHITE);
+                    box43.field.setBackground(Color.WHITE);
+                }
+            };
+            highlighterS = new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    box24.field.setBackground(Color.CYAN);
+                    box50.field.setBackground(Color.CYAN);
+                    box60.field.setBackground(Color.CYAN);
+                    box62.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    box24.field.setBackground(Color.WHITE);
+                    box50.field.setBackground(Color.WHITE);
+                    box60.field.setBackground(Color.WHITE);
+                    box62.field.setBackground(Color.WHITE);
+                }
+            };
+            highlighterY = new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    box30.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    box30.field.setBackground(Color.WHITE);
+                }
+            };
+            highlighterP = new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    box32.field.setBackground(Color.CYAN);
+                    box46.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    box32.field.setBackground(Color.WHITE);
+                    box46.field.setBackground(Color.WHITE);
+                }
+            };
+            highlighterW = new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    box41.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    box41.field.setBackground(Color.WHITE);
+                }
+            };
+            highlighterL = new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    box48.field.setBackground(Color.CYAN);
+                    box56.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    box48.field.setBackground(Color.WHITE);
+                    box56.field.setBackground(Color.WHITE);
+                }
+            };
+            highlighterH = new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    box54.field.setBackground(Color.CYAN);
+                    box58.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    box54.field.setBackground(Color.WHITE);
+                    box58.field.setBackground(Color.WHITE);
+                }
+            };
+            highlighterT = new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    box61.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    box61.field.setBackground(Color.WHITE);
+                }
+            };
+//----------------adding the focus listeners---------------------------------------------
+            box2.field.addFocusListener(highlighterM);
+            
+            box9.field.addFocusListener(highlighterC);
+            box11.field.addFocusListener(highlighterR);
+            box12.field.addFocusListener(highlighterD);
+            
+            box18.field.addFocusListener(highlighterG);
+            box20.field.addFocusListener(highlighterR);
+            box22.field.addFocusListener(highlighterN);
+            box24.field.addFocusListener(highlighterS);
+            
+            box30.field.addFocusListener(highlighterY);
+            box32.field.addFocusListener(highlighterP);
+            
+            box38.field.addFocusListener(highlighterM);
+            
+            box41.field.addFocusListener(highlighterW);
+            box43.field.addFocusListener(highlighterN);
+            box44.field.addFocusListener(highlighterD);
+            box46.field.addFocusListener(highlighterP);
+            box48.field.addFocusListener(highlighterL);
+            
+            box50.field.addFocusListener(highlighterS);
+            box54.field.addFocusListener(highlighterH);
+            box56.field.addFocusListener(highlighterL);
+            
+            box57.field.addFocusListener(highlighterG);
+            box58.field.addFocusListener(highlighterH);
+            box60.field.addFocusListener(highlighterS);
+            box61.field.addFocusListener(highlighterT);
+            box62.field.addFocusListener(highlighterS);
+            //focus listener for second "group" of boxes with the same answer
+            
+//-----------Action listener methods---------------------------------------------------
+            //define the following methods
+            box2.field.addActionListener(new ActionListener() {
+                      public void actionPerformed(ActionEvent e) {
+                        box2.input = box2.field.getText();
+                        box38.input = box2.input;
+                        box38.field.setText(box2.input);
+                      }
+                });
+            box9.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box9.input = box9.field.getText();
+                  }
+            });
+            box11.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box11.input = box11.field.getText();
+                    box20.input = box11.input;
+                    box20.field.setText(box11.input);
+                  }
+            });
+            box12.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box12.input = box12.field.getText();
+                    box44.input = box12.input;
+                    box44.field.setText(box12.input);
+                  }
+            });
+            box18.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box18.input = box18.field.getText();
+                    box57.input = box18.input;
+                    box57.field.setText(box18.input);
+                  }
+            });
+            box20.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box20.input = box20.field.getText();
+                    box11.input = box20.input;
+                    box11.field.setText(box20.input);
+                  }
+            });
+            box22.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box22.input = box22.field.getText();
+                    box43.input = box22.input;
+                    box43.field.setText(box22.input);
+                  }
+            });
+            box24.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box24.input = box24.field.getText();
+                    box50.input = box24.input;
+                    box60.input = box24.input;
+                    box62.input = box24.input;
+                    box50.field.setText(box24.input);
+                    box60.field.setText(box24.input);
+                    box62.field.setText(box24.input);
+                  }
+            });
+            box30.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box30.input = box30.field.getText();
+                  }
+            });
+            box32.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box32.input = box32.field.getText();
+                    box46.input = box32.input;
+                    box46.field.setText(box32.input);
+                  }
+            });
+            box38.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box38.input = box38.field.getText();
+                    box2.input = box38.input;
+                    box2.field.setText(box38.input);
+                  }
+            });
+            box41.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box41.input = box41.field.getText();
+                  }
+            });
+            box43.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box43.input = box43.field.getText();
+                    box22.input = box43.input;
+                    box22.field.setText(box43.input);
+                  }
+            });
+            box44.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box44.input = box44.field.getText();
+                    box12.input = box44.input;
+                    box12.field.setText(box44.input);
+                  }
+            });
+            box46.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box46.input = box46.field.getText();
+                    box32.input = box46.input;
+                    box32.field.setText(box46.input);
+                  }
+            });
+            box48.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box48.input = box48.field.getText();
+                    box56.input = box48.input;
+                    box56.field.setText(box48.input);
+                  }
+            });
+            box50.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box50.input = box50.field.getText();
+                    box24.input = box50.input;
+                    box60.input = box50.input;
+                    box62.input = box50.input;
+                    box24.field.setText(box50.input);
+                    box60.field.setText(box50.input);
+                    box62.field.setText(box50.input);
+                  }
+            });
+            box54.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box54.input = box54.field.getText();
+                    box58.input = box54.input;
+                    box58.field.setText(box54.input);
+                  }
+            });
+            box56.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box56.input = box56.field.getText();
+                    box48.input = box56.input;
+                    box48.field.setText(box56.input);
+                  }
+            });
+            box57.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box57.input = box57.field.getText();
+                    box18.input = box57.input;
+                    box18.field.setText(box57.input);
+                  }
+            });
+            box58.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box58.input = box58.field.getText();
+                    box54.input = box58.input;
+                    box54.field.setText(box58.input);
+                  }
+            });
+            box60.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box60.input = box60.field.getText();
+                    box24.input = box60.input;
+                    box50.input = box60.input;
+                    box62.input = box60.input;
+                    box24.field.setText(box60.input);
+                    box50.field.setText(box60.input);
+                    box62.field.setText(box60.input);
+                  }
+            });
+            box61.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box61.input = box61.field.getText();
+                  }
+            });
+            box62.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box62.input = box62.field.getText();
+                    box24.input = box62.input;
+                    box50.input = box62.input;
+                    box60.input = box62.input;
+                    box24.field.setText(box62.input);
+                    box50.field.setText(box62.input);
+                    box60.field.setText(box62.input);
+                  }
+            });
+            frame.pack();
+            
+            //what happens when the submit button is pressed
+                    submit.addActionListener(new ActionListener() {
+                          public void actionPerformed(ActionEvent e) {
+                            if (box2.input.equals(box2.ans) && box9.input.equals(box9.ans) && box11.input.equals(box11.ans)&& box12.input.equals(box12.ans)&& box18.input.equals(box18.ans)&& box22.input.equals(box22.ans)&& box24.input.equals(box24.ans)&& box30.input.equals(box30.ans)&& box32.input.equals(box32.ans)&& box41.input.equals(box41.ans)&& box48.input.equals(box48.ans)&& box54.input.equals(box54.ans)&& box61.input.equals(box61.ans)) {
+                                frame.getContentPane().remove(panel1); //remove this level's panel
+                                level2(frame);
+                                frame.pack();
+                            }
+                          }
+                    });
+                    
+        }
+        //link the following panel to the end of the first level
+        public static void level2(JFrame frame) {
+            JPanel panel2 = new JPanel();
+            JButton submit = new JButton("Submit");
+            JLabel background = new JLabel(new ImageIcon("blank.jpg"));
+            Font font1 = new Font("Courier New", Font.BOLD, 12);
+            background.setBounds(0, 0, 900, 700);            
+            frame.add(panel2);
+            panel2.add(submit);
+            panel2.add(background);
+            panel2.setVisible(true);
+            panel2.setLayout(null);
+            panel2.setSize(new Dimension(1200, 800));  
+            submit.setFont(font1);
+            submit.setVisible(true);
+            submit.setBounds(727, 620, 80, 30);//the action listener method for the submit button is defined at the end
+            
+            //background
+            //adding the boxes
+            Box box1 = new Box (50, 50, "C", panel2);
+            Box box2 = new Box(125, 50, "A", panel2, true);
+            Box box3 = new Box(200, 50, "R", panel2);
+            Box box4 = new Box(275, 50, "O", panel2, true);
+            Box box5 = new Box(350, 50, "L", panel2);
+            Box box6 = new Box(425, 50, panel2, true);
+            Box box7 = new Box(500, 50, panel2, true);
+            Box box8 = new Box(575, 50, panel2, true);
+            Box box9 = new Box(50, 125, panel2, true);
+            Box box10 = new Box(125, 125, "M", panel2);
+            Box box11 = new Box(200, 125, "A", panel2, true);
+            Box box12 = new Box(275, 125, "K", panel2);
+            Box box13 = new Box(350, 125, "E", panel2, true);
+            Box box14 = new Box(425, 125, "U", panel2, true);
+            Box box15 = new Box(500, 125, "P", panel2);
+            Box box16 = new Box(575, 125, panel2, true);
+            Box box17 = new Box(50, 200, panel2, true);
+            Box box18 = new Box(125, 200, panel2, true);
+            Box box19 = new Box(200, 200, "P", panel2);
+            Box box20 = new Box(275, 200, panel2, true);
+            Box box21 = new Box(350, 200, "A", panel2, true);
+            Box box22 = new Box(425, 200, panel2, true);
+            Box box23 = new Box(500, 200, "A", panel2, true);
+            Box box24 = new Box(575, 200, panel2, true);
+            Box box25 = new Box(50, 275, panel2, true);
+            Box box26 = new Box(125, 275, panel2, true);
+            Box box27 = new Box(200, 275, "T", panel2);
+            Box box28 = new Box(275, 275, "O", panel2, true);
+            Box box29 = new Box(350, 275, "K", panel2);
+            Box box30 = new Box(425, 275, "E", panel2, true);
+            Box box31 = new Box(500, 275, "N", panel2);
+            Box box32 = new Box(575, 275, panel2, true);
+            Box box33 = new Box(50, 350, "U", panel2, true);
+            Box box34 = new Box(125, 350, panel2, true);
+            Box box35 = new Box(200, 350, "U", panel2, true);
+            Box box36 = new Box(275, 350, panel2, true);
+            Box box37 = new Box(350, 350, panel2, true);
+            Box box38 = new Box(425, 350, panel2, true);
+            Box box39 = new Box(500, 350, "E", panel2, true);
+            Box box40 = new Box(575, 350, panel2, true);
+            Box box41 = new Box(50, 425, "G", panel2);
+            Box box42 = new Box(125, 425, "A", panel2, true);
+            Box box43 = new Box(200, 425, "R", panel2);
+            Box box44 = new Box(275, 425, "G", panel2);
+            Box box45 = new Box(350, 425, "O", panel2, true);
+            Box box46 = new Box(425, 425, "Y", panel2);
+            Box box47 = new Box(500, 425, "L", panel2);
+            Box box48 = new Box(575, 425, "E", panel2, true);
+            Box box49 = new Box(50, 500, "L", panel2);
+            Box box50 = new Box(125, 500, panel2, true);
+            Box box51 = new Box(200, 500, "E", panel2, true);
+            Box box52 = new Box(275, 500, panel2, true);
+            Box box53 = new Box(350, 500, "U", panel2, true);
+            Box box54 = new Box(425, 500, panel2, true);
+            Box box55 = new Box(500, 500, panel2, true);
+            Box box56 = new Box(575, 500, "N", panel2);
+            Box box57 = new Box(50, 575, "Y", panel2);
+            Box box58 = new Box(125, 575, panel2, true);
+            Box box59 = new Box(200, 575, panel2, true);
+            Box box60 = new Box(275, 575, panel2, true);
+            Box box61 = new Box(350, 575, "R", panel2);
+            Box box62 = new Box(425, 575, "E", panel2, true);
+            Box box63 = new Box(500, 575, "A", panel2, true);
+            Box box64 = new Box(575, 575, "D", panel2);
+            //word bank
+            Box letterbank = new Box("CLSMKPNTDGRY", panel2);
+            frame.repaint();
+            frame.pack();
+            
+            //focus listener methods
+            //first group of boxes with the same answer
+            FocusListener highlighterF, highlighterC, highlighterL, highlighterS, highlighterM, highlighterK, highlighterP, highlighterN, highlighterT, highlighterD, highlighterG, highlighterR, highlighterY;
+            highlighterC = new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    box1.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    box1.field.setBackground(Color.WHITE);
+                }
+            };
+            box1.field.addFocusListener(highlighterC);
+            
+            //focus listener the next "group" of boxes with the same answer
+            highlighterR = new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    box3.field.setBackground(Color.CYAN);
+                    box43.field.setBackground(Color.CYAN);
+                    box61.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    box3.field.setBackground(Color.WHITE);
+                    box43.field.setBackground(Color.WHITE);
+                    box61.field.setBackground(Color.WHITE);
+                }
+            };
+            box3.field.addFocusListener(highlighterR);
+            box43.field.addFocusListener(highlighterR);
+            box61.field.addFocusListener(highlighterR);
+            
+            //focus listener the next "group" of boxes with the same answer
+            highlighterL = new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    box5.field.setBackground(Color.CYAN);
+                    box47.field.setBackground(Color.CYAN);
+                    box49.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    box5.field.setBackground(Color.WHITE);
+                    box47.field.setBackground(Color.WHITE);
+                    box49.field.setBackground(Color.WHITE);
+                }
+            };
+            box5.field.addFocusListener(highlighterL);
+            box47.field.addFocusListener(highlighterL);
+            box49.field.addFocusListener(highlighterL);
+            
+            //focus listener the next "group" of boxes with the same answer
+            highlighterM = new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    box10.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    box10.field.setBackground(Color.WHITE);
+                }
+            };
+            box10.field.addFocusListener(highlighterM);
+           
+            //focus listener the next "group" of boxes with the same answer
+            highlighterK = new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    box12.field.setBackground(Color.CYAN);
+                    box29.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    box12.field.setBackground(Color.WHITE);
+                    box29.field.setBackground(Color.WHITE);
+                }
+            };
+            box12.field.addFocusListener(highlighterK);
+            box29.field.addFocusListener(highlighterK);
+            
+            //focus listener for the next "group" of boxes with the same answer
+            highlighterP = new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    box15.field.setBackground(Color.CYAN);
+                    box19.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    box15.field.setBackground(Color.WHITE);
+                    box19.field.setBackground(Color.WHITE);
+                }
+            };
+            box15.field.addFocusListener(highlighterP);
+            box19.field.addFocusListener(highlighterP);
+            
+            //focus listener the next "group" of boxes with the same answer
+            highlighterN = new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    box31.field.setBackground(Color.CYAN);
+                    box56.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    box31.field.setBackground(Color.WHITE);
+                    box56.field.setBackground(Color.WHITE);
+                }
+            };
+            box31.field.addFocusListener(highlighterN);
+            box56.field.addFocusListener(highlighterN);
+            
+            //focus listener the next "group" of boxes with the same answer
+            highlighterT = new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    box27.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    box27.field.setBackground(Color.WHITE);
+                }
+            };
+            box27.field.addFocusListener(highlighterT);
+            
+            //focus listener the next "group" of boxes with the same answer
+            highlighterG = new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    box41.field.setBackground(Color.CYAN);
+                    box44.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    box41.field.setBackground(Color.WHITE);
+                    box44.field.setBackground(Color.WHITE);
+                }
+            };
+            box41.field.addFocusListener(highlighterG);
+            box44.field.addFocusListener(highlighterG);
+            
+            //focus listener the next "group" of boxes with the same answer
+            highlighterY = new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    box46.field.setBackground(Color.CYAN);
+                    box57.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    box46.field.setBackground(Color.WHITE);
+                    box57.field.setBackground(Color.WHITE);
+                }
+            };
+            box46.field.addFocusListener(highlighterY);
+            box57.field.addFocusListener(highlighterY);
+            
+            //focus listener the next "group" of boxes with the same answer
+            highlighterD = new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    box64.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    box64.field.setBackground(Color.WHITE);
+                }
+            };
+            box64.field.addFocusListener(highlighterD);
+            
+            //Action listener methods
+            box1.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box1.input = box1.field.getText();
+                    box1.field.setText(box1.input);
+                      }
+                });
+            box3.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box3.input = box3.field.getText();
+                    box43.input = box3.input;
+                    box61.input = box3.input;
+                    box3.field.setText(box3.input);
+                    box43.field.setText(box3.input);
+                    box61.field.setText(box3.input);
+                  }
+            });
+            box5.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box5.input = box5.field.getText();
+                    box47.input = box5.input;
+                    box49.input = box5.input;
+                    box5.field.setText(box5.input);
+                    box47.field.setText(box5.input);
+                    box49.field.setText(box5.input);
+                  }
+            });
+            box10.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box10.input = box10.field.getText();
+                    box10.field.setText(box10.input);
+                  }
+            });
+            box12.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box12.input = box12.field.getText();
+                    box29.input = box12.input;
+                    box12.field.setText(box12.input);
+                    box29.field.setText(box12.input);
+                  }
+            });
+            box15.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box15.input = box15.field.getText();
+                    box19.input = box15.input;
+                    box15.field.setText(box15.input);
+                    box19.field.setText(box15.input);
+                  }
+            });
+            box19.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box19.input = box19.field.getText();
+                    box15.input = box19.input;
+                    box19.field.setText(box19.input);
+                    box15.field.setText(box19.input);
+                  }
+            });
+            box27.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box27.input = box27.field.getText();
+                    box27.field.setText(box27.input);
+                  }
+            });
+            box29.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box29.input = box29.field.getText();
+                    box12.input = box29.input;
+                    box29.field.setText(box29.input);
+                    box12.field.setText(box29.input);
+                  }
+            });
+            box31.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box31.input = box31.field.getText();
+                    box56.input = box31.input;
+                    box31.field.setText(box31.input);
+                    box56.field.setText(box31.input);
+                  }
+            });
+            box41.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box41.input = box41.field.getText();
+                    box44.input = box41.input;
+                    box41.field.setText(box41.input);
+                    box44.field.setText(box41.input);
+                  }
+            });
+            box43.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box43.input = box43.field.getText();
+                    box3.input = box3.field.getText();
+                    box61.input = box43.input;
+                    box43.field.setText(box43.input);
+                    box3.field.setText(box43.input);
+                    box61.field.setText(box43.input);
+                  }
+            });
+            box44.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box44.input = box44.field.getText();
+                    box41.input = box44.input;
+                    box44.field.setText(box44.input);
+                    box41.field.setText(box44.input);
+                  }
+            });
+            box46.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box46.input = box46.field.getText();
+                    box57.input = box46.input;
+                    box46.field.setText(box46.input);
+                    box57.field.setText(box46.input);
+                  }
+            });
+            box47.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box47.input = box47.field.getText();
+                    box5.input = box47.input;
+                    box49.input = box47.input;
+                    box47.field.setText(box47.input);
+                    box5.field.setText(box47.input);
+                    box49.field.setText(box47.input);
+                  }
+            });
+            box49.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box49.input = box49.field.getText();
+                    box5.input = box49.input;
+                    box47.input = box49.input;
+                    box49.field.setText(box49.input);
+                    box5.field.setText(box49.input);
+                    box47.field.setText(box49.input);
+                  }
+            });
+            box56.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box56.input = box56.field.getText();
+                    box31.input = box56.input;
+                    box56.field.setText(box56.input);
+                    box31.field.setText(box56.input);
+                  }
+            });
+            box57.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box57.input = box57.field.getText();
+                    box46.input = box57.input;
+                    box57.field.setText(box57.input);
+                    box46.field.setText(box57.input);
+                  }
+            });
+            box61.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box61.input = box61.field.getText();
+                    box3.input = box3.field.getText();
+                    box43.input = box61.input;
+                    box61.field.setText(box61.input);
+                    box3.field.setText(box61.input);
+                    box43.field.setText(box61.input);
+                  }
+            });
+            box64.field.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                    box64.input = box64.field.getText();
+                    box64.field.setText(box64.input);
+                  }
+            });
+            //for some reason, more boxes won't show up until you click them
+            
+            //what happens when the submit button is pressed
+                    submit.addActionListener(new ActionListener() {
+                          public void actionPerformed(ActionEvent e) {
+                            if (box1.input.equals(box1.ans) && box3.input.equals(box3.ans) && box5.input.equals(box5.ans) && box10.input.equals(box10.ans) && box12.input.equals(box12.ans) && box15.input.equals(box15.ans) && box27.input.equals(box27.ans) && box41.input.equals(box41.ans) && box46.input.equals(box46.ans)){
+                                frame.getContentPane().remove(panel2);
+                                level3(frame);
+                                frame.pack();
+                            }
+                          }
+                    });
+        }
+
+
+
+
+            public static void level3 (JFrame frame)
+            {
+                JPanel panel3 = new JPanel();
+                JButton submit = new JButton("Submit");
+                JLabel background = new JLabel(new ImageIcon("blank.jpg"));
+                Font font1 = new Font("Courier New", Font.BOLD, 12);
+                background.setBounds(0, 0, 900, 700);
+                frame.add(panel3);
+                panel3.add(submit);
+                panel3.add(background);
+                panel3.setVisible(true);
+                panel3.setLayout(null);
+                panel3.setSize(new Dimension(1000, 700));
+                submit.setFont(font1);
+                submit.setVisible(true);
+                submit.setLayout(null);
+                submit.setBounds(727, 620, 80, 30); //the action listener method for the submit button is defined at the end
+                
+                //adding the boxes
+                Box box1 = new Box (50, 50, "E", panel3, true);   //E
+                
+                Box box2 = new Box (125, 50, "L", panel3);   //L
+                Box box3 = new Box (200, 50, "M", panel3);   //M
+                
+                Box box4 = new Box (275, 50, panel3, true);  //BLANK
+                Box box5 = new Box (350, 50, panel3, true);  //BLANK
+                Box box6 = new Box (425, 50, panel3, true);  //BLANK
+                
+                Box box7 = new Box (500, 50, "I", panel3, true);  //I
+                
+                Box box8 = new Box (575, 50, "F", panel3);  //F
+                Box box9 = new Box (50, 125, "V", panel3);   //V
+                
+                Box box10 = new Box (125, 125, "O", panel3, true);  //O
+                
+                Box box11 = new Box (200, 125, "Y", panel3);  //Y
+                
+                Box box12 = new Box (275, 125, "A", panel3, true); //A
+                
+                Box box13 = new Box (350, 125, "G", panel3); //G
+                
+                Box box14 = new Box (425, 125, "E", panel3, true); //E
+                
+                Box box15 = new Box (500, 125, panel3, true); //BLANK
+                
+                Box box16 = new Box (575, 125, "R", panel3); //R
+                
+                Box box17 = new Box (50, 200, "A", panel3, true);  //A
+                
+                Box box18 = new Box (125, 200, "G", panel3);  //G
+                
+                Box box19 = new Box (200, 200, "O", panel3, true);  //O
+                
+                Box box20 = new Box (275, 200, panel3, true); //BLANK
+                
+                Box box21 = new Box (350, 200, "L", panel3); //L
+                
+                Box box22 = new Box (425, 200, panel3, true); //BLANK
+                
+                Box box23 = new Box (500, 200, "T", panel3); //T
+                
+                Box box24 = new Box (575, 200, "O", panel3, true); //O
+                
+                Box box25 = new Box (50, 275, "D", panel3); //D
+                
+                Box box26 = new Box (125, 275, panel3, true); //BLANK
+                
+                Box box27 = new Box (200, 275, "P", panel3); //P
+                Box box28 = new Box (275, 275, "H", panel3); //H
+                
+                Box box29 = new Box (350, 275, "O", panel3, true); //O
+                
+                Box box30 = new Box (425, 275, "N", panel3); //N
+                
+                Box box31 = new Box (500, 275, "E", panel3, true); //E
+                
+                Box box32 = new Box (575, 275, "S", panel3); //S
+                
+                Box box33 = new Box (50, 350, "E", panel3, true); //E
+                
+                Box box34 = new Box (125, 350, panel3, true); //BLANK
+                
+                Box box35 = new Box (200, 350, "I", panel3, true); //I
+                
+                Box box36 = new Box (275, 350, panel3, true); //BLANK
+                
+                Box box37 = new Box (350, 350, "V", panel3); //V
+                
+                Box box38 = new Box (425, 350, "E", panel3, true); //E
+                
+                Box box39 = new Box (500, 350, "N", panel3); //N
+                Box box40 = new Box (575, 350, "T", panel3); //T
+                
+                Box box41 = new Box (50, 425, panel3, true); //BLANK
+                
+                Box box42 = new Box (125, 425, "W", panel3); //W
+                
+                Box box43 = new Box (200, 425, "A", panel3, true); //A
+                
+                Box box44 = new Box (275, 425, "T", panel3); //T
+                
+                Box box45 = new Box (350, 425, "E", panel3, true); //E
+                
+                Box box46 = new Box (425, 425, "R", panel3); //R
+                
+                Box box47 = new Box (500, 425, panel3, true); //BLANK
+                
+                Box box48 = new Box (575, 425, "E", panel3, true); //E
+                
+                Box box49 = new Box (50, 500, "A", panel3, true); //A
+                
+                Box box50 = new Box (125, 500, "H", panel3); //H
+                
+                Box box51 = new Box (200, 500, panel3, true); //BLANK
+                
+                Box box52 = new Box (275, 500, "W", panel3); //W
+                
+                Box box53 = new Box (350, 500, panel3, true); //BLANK
+                
+                Box box54 = new Box (425, 500, "D", panel3); //D
+                
+                Box box55 = new Box (500, 500, "A", panel3, true); //A
+                
+                Box box56 = new Box (575, 500, "D", panel3); //D
+                Box box57 = new Box (50, 575, "S", panel3); //S
+                Box box58 = new Box (125, 575, "Y", panel3); //Y
+                Box box59 = new Box (200, 575, "N", panel3); //N
+                
+                Box box60 = new Box (275, 575, "O", panel3, true); //O
+                
+                Box box61 = new Box (350, 575, "N", panel3); //N
+                Box box62 = new Box (425, 575, "Y", panel3); //Y
+                Box box63 = new Box (500, 575, "M", panel3); //M
+                Box box64 = new Box (575, 575, "S", panel3); //S
+                Box letterbank = new Box ("LMFVYGRTDPHNSW", panel3);  
+                frame.pack();
+                
+                //focus listener methods
+                //first group of boxes with the same answer
+                FocusListener highlighterL; //L - 2, 21
+                FocusListener highlighterM; //M - 3, 63
+                FocusListener highlighterF; //F - 8
+                FocusListener highlighterV; //V - 9, 37
+                FocusListener highlighterY; //Y - 11, 58, 62
+                FocusListener highlighterG; //G - 13, 18
+                FocusListener highlighterR; //R - 16, 46
+                FocusListener highlighterT; //T - 23, 40, 44
+                FocusListener highlighterD; //D - 25, 54, 56
+                FocusListener highlighterP;//P - 27
+                FocusListener highlighterH;//H - 28, 50
+                FocusListener highlighterN;//N - 30, 39, 59, 61
+                FocusListener highlighterS;//S - 32, 57, 64
+                FocusListener highlighterW;//W - 42, 52
+                
+                //focus listener for "L"
+                highlighterL = new FocusListener()
+                {
+                    @Override
+                    public void focusGained(FocusEvent e)
+                    {
+                        box2.field.setBackground(Color.CYAN);
+                        box21.field.setBackground(Color.CYAN);
+                    }
+    
+                    @Override
+                    public void focusLost(FocusEvent e)
+                    {
+                        box2.field.setBackground(Color.WHITE);
+                        box21.field.setBackground(Color.WHITE);
+                    }
+                };
+                box2.field.addFocusListener(highlighterL);
+                box21.field.addFocusListener(highlighterL);
+                
+                //focus listener for "M"
+                highlighterM = new FocusListener()
+                {
+                    @Override
+                    public void focusGained(FocusEvent e)
+                    {
+                        box3.field.setBackground(Color.CYAN);
+                        box63.field.setBackground(Color.CYAN);
+                    }
+    
+                    @Override
+                    public void focusLost(FocusEvent e)
+                    {
+                        box3.field.setBackground(Color.WHITE);
+                        box63.field.setBackground(Color.WHITE);
+                    }
+                };
+                box3.field.addFocusListener(highlighterM);
+                box63.field.addFocusListener(highlighterM);
+                
+                //focus listener for "F"
+                highlighterF = new FocusListener()
+                {
+                    @Override
+                    public void focusGained(FocusEvent e)
+                    {
+                        box8.field.setBackground(Color.CYAN);
+                    }
+    
+                    @Override
+                    public void focusLost(FocusEvent e)
+                    {
+                        box8.field.setBackground(Color.WHITE);
+                    }
+                };
+                box8.field.addFocusListener(highlighterF);
+    
+                //focus listener for "V"
+                highlighterV = new FocusListener()
+                {
+                    @Override
+                    public void focusGained(FocusEvent e)
+                    {
+                        box9.field.setBackground(Color.CYAN);
+                        box37.field.setBackground(Color.CYAN);
+                    }
+    
+                    @Override
+                    public void focusLost(FocusEvent e)
+                    {
+                        box9.field.setBackground(Color.WHITE);
+                        box37.field.setBackground(Color.WHITE);
+                    }
+                };
+                box9.field.addFocusListener(highlighterV);
+                box37.field.addFocusListener(highlighterV);
+                
+                //focus listener for "Y"
+                highlighterY = new FocusListener()
+                {
+                    @Override
+                    public void focusGained(FocusEvent e)
+                    {
+                        box11.field.setBackground(Color.CYAN);
+                        box58.field.setBackground(Color.CYAN);
+                        box62.field.setBackground(Color.CYAN);
+                    }
+    
+                    @Override
+                    public void focusLost(FocusEvent e)
+                    {
+                        box11.field.setBackground(Color.WHITE);
+                        box58.field.setBackground(Color.WHITE);
+                        box62.field.setBackground(Color.WHITE);
+                    }
+                };
+                box11.field.addFocusListener(highlighterY);
+                box58.field.addFocusListener(highlighterY);
+                box62.field.addFocusListener(highlighterY);
+                
+                //focus listener for "G"
+                highlighterG = new FocusListener()
+                {
+                    @Override
+                    public void focusGained(FocusEvent e)
+                    {
+                        box13.field.setBackground(Color.CYAN);
+                        box18.field.setBackground(Color.CYAN);
+                    }
+    
+                    @Override
+                    public void focusLost(FocusEvent e)
+                    {
+                        box13.field.setBackground(Color.WHITE);
+                        box18.field.setBackground(Color.WHITE);
+                    }
+                };
+                box13.field.addFocusListener(highlighterG);
+                box18.field.addFocusListener(highlighterG);
+                
+                //focus listener for "R"
+                highlighterR = new FocusListener()
+                {
+                    @Override
+                    public void focusGained(FocusEvent e)
+                    {
+                        box16.field.setBackground(Color.CYAN);
+                        box46.field.setBackground(Color.CYAN);
+                    }
+    
+                    @Override
+                    public void focusLost(FocusEvent e)
+                    {
+                        box16.field.setBackground(Color.WHITE);
+                        box46.field.setBackground(Color.WHITE);
+                }
+            };
+            box16.field.addFocusListener(highlighterR);
+            box46.field.addFocusListener(highlighterR);
+            
+            //focus listener for "T"
+            highlighterT = new FocusListener()
+            {
+                @Override
+                public void focusGained(FocusEvent e)
+                {
+                    box23.field.setBackground(Color.CYAN);
+                    box40.field.setBackground(Color.CYAN);
+                    box44.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e)
+                {
+                    box23.field.setBackground(Color.WHITE);
+                    box40.field.setBackground(Color.WHITE);
+                    box44.field.setBackground(Color.WHITE);
+                }
+            };
+            box23.field.addFocusListener(highlighterT);
+            box40.field.addFocusListener(highlighterT);
+            box44.field.addFocusListener(highlighterT);
+            
+            //focus listener for "D"
+            highlighterD = new FocusListener()
+            {
+                @Override
+                public void focusGained(FocusEvent e)
+                {
+                    box25.field.setBackground(Color.CYAN);
+                    box54.field.setBackground(Color.CYAN);
+                    box56.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e)
+                {
+                    box25.field.setBackground(Color.WHITE);
+                    box54.field.setBackground(Color.WHITE);
+                    box56.field.setBackground(Color.WHITE);
+                }
+            };
+            box25.field.addFocusListener(highlighterD);
+            box54.field.addFocusListener(highlighterD);
+            box56.field.addFocusListener(highlighterD);
+            
+            //focus listener for "P"
+            highlighterP = new FocusListener()
+            {
+                @Override
+                public void focusGained(FocusEvent e)
+                {
+                    box27.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e)
+                {
+                    box27.field.setBackground(Color.WHITE);
+                }
+            };
+            box27.field.addFocusListener(highlighterP);
+
+
+            //focus listener for "H"
+            highlighterH = new FocusListener()
+            {
+                @Override
+                public void focusGained(FocusEvent e)
+                {
+                    box28.field.setBackground(Color.CYAN);
+                    box50.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e)
+                {
+                    box28.field.setBackground(Color.WHITE);
+                    box50.field.setBackground(Color.WHITE);
+                }
+            };
+            box28.field.addFocusListener(highlighterH);
+            box50.field.addFocusListener(highlighterH);
+            
+            //focus listener for "N"
+            highlighterN = new FocusListener()
+            {
+                @Override
+                public void focusGained(FocusEvent e)
+                {
+                    box30.field.setBackground(Color.CYAN);
+                    box39.field.setBackground(Color.CYAN);
+                    box59.field.setBackground(Color.CYAN);
+                    box61.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e)
+                {
+                    box30.field.setBackground(Color.WHITE);
+                    box39.field.setBackground(Color.WHITE);
+                    box59.field.setBackground(Color.WHITE);
+                    box61.field.setBackground(Color.WHITE);
+                }
+            };
+            box30.field.addFocusListener(highlighterN);
+            box39.field.addFocusListener(highlighterN);
+            box59.field.addFocusListener(highlighterN);
+            box61.field.addFocusListener(highlighterN);
+            
+            //focus listener for "S"
+            highlighterS = new FocusListener()
+            {
+                @Override
+                public void focusGained(FocusEvent e)
+                {
+                    box32.field.setBackground(Color.CYAN);
+                    box57.field.setBackground(Color.CYAN);
+                    box64.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e)
+                {
+                    box32.field.setBackground(Color.WHITE);
+                    box57.field.setBackground(Color.WHITE);
+                    box64.field.setBackground(Color.WHITE);
+                }
+            };
+            box32.field.addFocusListener(highlighterS);
+            box57.field.addFocusListener(highlighterS);
+            box64.field.addFocusListener(highlighterS);
+            
+            //focus listener for "W"
+            highlighterW = new FocusListener()
+            {
+                @Override
+                public void focusGained(FocusEvent e)
+                {
+                    box42.field.setBackground(Color.CYAN);
+                    box52.field.setBackground(Color.CYAN);
+                }
+
+
+                @Override
+                public void focusLost(FocusEvent e)
+                {
+                    box42.field.setBackground(Color.WHITE);
+                    box52.field.setBackground(Color.WHITE);
+                }
+            };
+            box42.field.addFocusListener(highlighterW);
+            box52.field.addFocusListener(highlighterW);
+            
+            
+            frame.pack();
+            
+            //Action listener methods
+            
+            //Action Listener "L" - box2 & box21
+            box2.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box2.input = box2.field.getText();
+                    box21.input = box2.input;
+                    box2.field.setText(box2.input);
+                    box21.field.setText(box2.input);
+                }
+            });
+            
+            box21.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box21.input = box21.field.getText();
+                    box2.input = box21.input;
+                    box21.field.setText(box21.input);
+                    box2.field.setText(box21.input);
+                }
+            });
+            
+            
+            //Action Listener "M" - box3 & box63
+            box3.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box3.input = box3.field.getText();
+                    box63.input = box3.input;
+                    box3.field.setText(box3.input);
+                    box63.field.setText(box3.input);
+                }
+            });
+            
+            box63.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box63.input = box63.field.getText();
+                    box3.input = box63.input;
+                    box63.field.setText(box63.input);
+                    box3.field.setText(box63.input);
+                }
+            });
+            
+            //Action Listener "F" - box8
+            box8.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box8.input = box8.field.getText();
+                }
+            });
+            
+            //Action Listener "V" - box9 & box37
+            box9.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box9.input = box9.field.getText();
+                    box37.input = box9.input;
+                    box9.field.setText(box9.input);
+                    box37.field.setText(box9.input);
+                }
+            });
+            
+            box37.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box37.input = box37.field.getText();
+                    box9.input = box37.input;
+                    box37.field.setText(box37.input);
+                    box9.field.setText(box37.input);
+                }
+            });
+            
+            //Action Listener "Y" - box11, box58, & box62
+            box11.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box11.input = box11.field.getText();
+                    box58.input = box11.input;
+                    box62.input = box11.input;
+                    box11.field.setText(box11.input);
+                    box58.field.setText(box11.input);
+                    box62.field.setText(box11.input);
+                }
+            });
+            
+            box58.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box58.input = box58.field.getText();
+                    box11.input = box58.input;
+                    box62.input = box58.input;
+                    box58.field.setText(box58.input);
+                    box11.field.setText(box58.input);
+                    box62.field.setText(box58.input);
+                }
+            });
+            
+            
+            box62.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box62.input = box62.field.getText();
+                    box11.input = box62.input;
+                    box58.input = box62.input;
+                    box62.field.setText(box62.input);
+                    box58.field.setText(box62.input);
+                    box11.field.setText(box62.input);
+                }
+            });
+            
+            //Action Listener "G" - box13 & box18
+            box13.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box13.input = box13.field.getText();
+                    box18.input = box13.input;
+                    box13.field.setText(box13.input);
+                    box18.field.setText(box13.input);
+                }
+            });
+            
+            box18.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box18.input = box18.field.getText();
+                    box13.input = box18.input;
+                    box18.field.setText(box18.input);
+                    box13.field.setText(box18.input);
+                }
+            });
+            
+            //Action Listener "R" - box16 & box46
+            box16.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box16.input = box16.field.getText();
+                    box46.input = box16.input;
+                    box16.field.setText(box16.input);
+                    box46.field.setText(box16.input);
+                }
+            });
+            
+            box46.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box46.input = box46.field.getText();
+                    box16.input = box46.input;
+                    box46.field.setText(box46.input);
+                    box16.field.setText(box46.input);
+                }
+            });
+            
+            
+            //Action Listener "T" - box23, box40, & box44
+            box23.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box23.input = box23.field.getText();
+                    box40.input = box23.input;
+                    box44.input = box23.input;
+                    box23.field.setText(box23.input);
+                    box40.field.setText(box23.input);
+                    box44.field.setText(box23.input);
+                }
+            });
+            
+            box40.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box40.input = box40.field.getText();
+                    box23.input = box40.input;
+                    box44.input = box40.input;
+                    box40.field.setText(box40.input);
+                    box23.field.setText(box40.input);
+                    box44.field.setText(box40.input);
+                }
+            });
+            
+            
+            box44.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box44.input = box44.field.getText();
+                    box23.input = box44.input;
+                    box40.input = box44.input;
+                    box44.field.setText(box44.input);
+                    box40.field.setText(box44.input);
+                    box23.field.setText(box44.input);
+                }
+            });
+            
+            //Action Listener "D" - box25, box54, & box56
+            box25.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box25.input = box25.field.getText();
+                    box54.input = box25.input;
+                    box56.input = box25.input;
+                    box25.field.setText(box25.input);
+                    box54.field.setText(box25.input);
+                    box56.field.setText(box25.input);
+                }
+            });
+            
+            box54.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box54.input = box54.field.getText();
+                    box25.input = box54.input;
+                    box56.input = box54.input;
+                    box54.field.setText(box54.input);
+                    box25.field.setText(box54.input);
+                    box56.field.setText(box54.input);
+                }
+            });
+            
+            
+            box56.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box56.input = box56.field.getText();
+                    box25.input = box56.input;
+                    box54.input = box56.input;
+                    box56.field.setText(box56.input);
+                    box54.field.setText(box56.input);
+                    box25.field.setText(box56.input);
+                }
+            });
+            
+            //Action Listener "P" - box27
+            box27.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box27.input = box27.field.getText();
+                }
+            });
+            
+            //Action Listener "H" - box28 & box50
+            box28.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box28.input = box28.field.getText();
+                    box50.input = box28.input;
+                    box28.field.setText(box28.input);
+                    box50.field.setText(box28.input);
+                }
+            });
+            
+            box50.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box50.input = box50.field.getText();
+                    box28.input = box50.input;
+                    box50.field.setText(box50.input);
+                    box28.field.setText(box50.input);
+                }
+            });
+            
+            //Action Listener "N" - box30, box39, box 59, & box61
+            box30.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box30.input = box30.field.getText();
+                    box39.input = box30.input;
+                    box59.input = box30.input;
+                    box61.input = box30.input;
+                    box30.field.setText(box30.input);
+                    box39.field.setText(box30.input);
+                    box59.field.setText(box30.input);
+                    box61.field.setText(box30.input);
+                }
+            });
+            
+            box39.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box39.input = box39.field.getText();
+                    box30.input = box39.input;
+                    box59.input = box39.input;
+                    box61.input = box39.input;
+                    box30.field.setText(box39.input);
+                    box39.field.setText(box39.input);
+                    box59.field.setText(box39.input);
+                    box61.field.setText(box39.input);
+                }
+            });
+           
+            box59.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box59.input = box59.field.getText();
+                    box39.input = box59.input;
+                    box50.input = box59.input;
+                    box61.input = box59.input;
+                    box30.field.setText(box59.input);
+                    box39.field.setText(box59.input);
+                    box59.field.setText(box59.input);
+                    box61.field.setText(box59.input);
+                }
+            });
+
+
+            box61.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box61.input = box61.field.getText();
+                    box39.input = box61.input;
+                    box59.input = box61.input;
+                    box30.input = box61.input;
+                    box30.field.setText(box61.input);
+                    box39.field.setText(box61.input);
+                    box59.field.setText(box61.input);
+                    box61.field.setText(box61.input);
+                }
+            });
+            
+            //Action Listener "S" - box32, box57, & box64
+            box32.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box32.input = box32.field.getText();
+                    box57.input = box32.input;
+                    box64.input = box32.input;
+                    box32.field.setText(box32.input);
+                    box57.field.setText(box32.input);
+                    box64.field.setText(box32.input);
+                }
+            });
+            
+            box57.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box57.input = box57.field.getText();
+                    box32.input = box57.input;
+                    box64.input = box57.input;
+                    box32.field.setText(box57.input);
+                    box57.field.setText(box57.input);
+                    box64.field.setText(box57.input);
+                }
+            });
+            
+            box64.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box64.input = box64.field.getText();
+                    box57.input = box64.input;
+                    box32.input = box64.input;
+                    box32.field.setText(box64.input);
+                    box57.field.setText(box64.input);
+                    box64.field.setText(box64.input);
+                }
+            });
+            
+            //Action Listener "W" - box42 & box52
+            box42.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box42.input = box42.field.getText();
+                    box52.input = box42.input;
+                    box42.field.setText(box42.input);
+                    box52.field.setText(box42.input);
+                }
+            });
+            
+            box52.field.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    box52.input = box52.field.getText();
+                    box42.input = box52.input;
+                    box42.field.setText(box52.input);
+                    box52.field.setText(box52.input);
+                }
+            });
+
+
+            frame.pack();
+            //for some reason, more boxes won't show up until you click them
+            
+            //what happens when the submit button is pressed
+            submit.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    if (box2.input.equals(box2.ans) && box3.input.equals(box3.ans) && box8.input.equals(box8.ans) && box9.input.equals(box9.ans) &&
+                    box11.input.equals(box11.ans) && box13.input.equals(box13.ans) && box16.input.equals(box16.ans) && box23.input.equals(box23.ans) &&
+                    box25.input.equals(box25.ans) && box27.input.equals(box27.ans) && box28.input.equals(box28.ans) &&
+                    box30.input.equals(box30.ans) && box32.input.equals(box32.ans) && box42.input.equals(box42.ans))
+                    {
+                        frame.getContentPane().remove(panel3);
+                        //GO TO FINAL PANEL
+                        congrats(frame);
+                        frame.pack();
+                    }
+                }
+            });
+        }
+            public static void congrats (JFrame frame) 
+        {
+            //Panel Declaration
+            JPanel congratPanel = new JPanel();
+            frame.add(congratPanel);
+            congratPanel.setLayout(null);
+            congratPanel.setVisible(true);
+            congratPanel.setBounds(0, 0, 900, 700);
+            
+            //Button to play again
+            Font font1 = new Font("Courier New", Font.BOLD, 15);
+            JButton again = new JButton("Play Again");
+            congratPanel.add(again);
+            again.setVisible(true);
+                   again.setBounds(519, 415, 125, 75);
+                   again.setFont(font1); //the action listener method for the submit button is defined at the end
+            
+            //JLabels 
+            JLabel lbl = new JLabel (new ImageIcon("end.jpg"));
+            congratPanel.add(lbl);
+            lbl.setBounds(0, 0, 900, 700);
+            frame.pack();
+            
+            frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+            
+            //Audio playing
+            try 
+            {
+                String soundName = "congratulations.wav";    
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioInputStream);
+                clip.start();
+            }
+            catch(Exception e) 
+            {
+                System.out.println("Unable to open file");                
+            }
+            
+            
+            //Action listener for button "again"
+            again.addActionListener(new ActionListener() 
+            {
+                public void actionPerformed(ActionEvent e) 
+                {
+                    
+                    frame.getContentPane().remove(congratPanel);
+                    //GO TO FIRST PANEL
+                    titlescreen(frame);
+                    frame.pack();
+                }
+            });
+            frame.pack();
+        }
+
+
+}
+class JTextFieldLimit extends PlainDocument
+  {
+  private int limit;
+  JTextFieldLimit(int limit) {
+        super();
+        this.limit = limit;
+  }
+
+
+  JTextFieldLimit(int limit, boolean upper) {
+        super();
+        this.limit = limit;
+  }
+
+
+  public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
+        if (str == null)
+          return;
+
+
+        if ((getLength() + str.length()) <= limit) {
+          super.insertString(offset, str, attr);
+        }
+  }
+}
+
+
+class Box extends JFrame{
+        JTextField field;
+        String ans, input;
+    
+        public Box (int a, int b, String text, JPanel panel, boolean vowel) {
+            field = new JTextField(1);
+            Font font1 = new Font("SansSerif", Font.BOLD, 55);
+            //giving the field characteristics
+            field.setHorizontalAlignment(JTextField.CENTER);
+            field.setBounds(a, b, 75, 75);
+            field.setFont(font1);
+            field.setForeground(Color.GRAY);
+            field.setEditable(false);   
+            //insert code that changes textfield so that it center-justifies text
+            field.setText(text);
+            field.setBackground(Color.WHITE);
+            panel.add(field);
+            field.setVisible(true);
+        }
+    
+        public Box (int a, int b, String answer, JPanel panel) {
+            ans = answer;
+            input = "";
+            field = new JTextField(1);
+            field.addKeyListener(new KeyListener() {
+                @Override
+                public void keyTyped(KeyEvent e) {
+
+
+                }
+
+
+                @Override
+                public void keyPressed(KeyEvent e) {
+                }
+
+
+                @Override
+                public void keyReleased(KeyEvent e) {
+                    int pos = field.getCaretPosition();
+                    field.setText(field.getText().toUpperCase());
+                    field.setCaretPosition(pos);
+                }
+            });
+            Font font1 = new Font("SansSerif", Font.BOLD, 55);
+            //giving the field characteristics
+            field.setHorizontalAlignment(JTextField.CENTER);
+            field.setBounds(a, b, 75, 75);
+            field.setFont(font1);
+            field.setEditable(true);
+            field.setFocusable(true);
+            
+            //insert code that changes textfield so that it center-justifies text
+            panel.add(field);
+            field.setVisible(true);
+            field.setDocument(new JTextFieldLimit(1));
+        }
+    
+        public Box (int a, int b, JPanel panel, boolean nothing) {
+            field = new JTextField(1);
+            //giving the field characteristics
+            field.setBounds(a, b, 75, 75);
+            field.setEditable(false);
+            field.setBackground(Color.BLACK);
+            
+            //insert code that changes textfield so that it center-justifies text
+            panel.add(field);
+            field.setVisible(true);
+        }
+    
+        public Box (int a, int b, JPanel panel) {
+            field = new JTextField(1);
+            Font font1 = new Font("SansSerif", Font.BOLD, 30);
+            //giving the field characteristics
+            field.setHorizontalAlignment(JTextField.CENTER);
+            field.setBounds(a, b, 42, 42);
+            field.setFont(font1);
+            field.setEditable(false);
+            
+            //insert code that changes textfield so that it center-justifies text
+            panel.add(field);
+            field.setVisible(true);
+        }
+    
+        public Box(String letters, JPanel panel){
+            Box boxA = new Box(725, 50, panel);
+            Box boxB = new Box(767, 50, panel);
+            boxB.field.setText("B");
+            Box boxC = new Box(725, 92, panel);
+            boxC.field.setText("C");
+            Box boxD = new Box(767, 92, panel);
+            boxD.field.setText("D");
+            Box boxE = new Box(725, 134, panel);
+            Box boxF = new Box(767, 134, panel);
+            boxF.field.setText("F");
+            Box boxG = new Box(725, 176, panel);
+            boxG.field.setText("G");
+            Box boxH = new Box(767, 176, panel);
+            boxH.field.setText("H");
+            Box boxI = new Box(725, 218, panel);
+            Box boxJ = new Box(767, 218, panel);
+            boxJ.field.setText("J");
+            Box boxK = new Box(725, 260, panel);
+            boxK.field.setText("K");
+            Box boxL = new Box(767, 260, panel);
+            boxL.field.setText("L");
+            Box boxM = new Box(725, 302, panel);
+            boxM.field.setText("M");
+            Box boxN = new Box(767, 302, panel);
+            boxN.field.setText("N");
+            Box boxO = new Box(725, 344, panel);
+            Box boxP = new Box(767, 344, panel);
+            boxP.field.setText("P");
+            Box boxQ = new Box(725, 386, panel);
+            boxQ.field.setText("Q");
+            Box boxR = new Box(767, 386, panel);
+            boxR.field.setText("R");
+            Box boxS = new Box(725, 428, panel);
+            boxS.field.setText("S");
+            Box boxT = new Box(767, 428, panel);
+            boxT.field.setText("T");
+            Box boxU = new Box(725, 470, panel);
+            Box boxV = new Box(767, 470, panel);
+            boxV.field.setText("V");
+            Box boxW = new Box(725, 512, panel);
+            boxW.field.setText("W");
+            Box boxX = new Box(767, 512, panel);
+            boxX.field.setText("X");
+            Box boxY = new Box(725, 554, panel);
+            boxY.field.setText("Y");
+            Box boxZ = new Box(767, 554, panel);
+            boxZ.field.setText("Z");
+            if (!letters.contains("B"))
+                boxB.field.setText("");
+            if (!letters.contains("C"))
+                boxC.field.setText("");
+            if (!letters.contains("D"))
+                boxD.field.setText("");
+            if (!letters.contains("F"))
+                boxF.field.setText("");
+            if (!letters.contains("G"))
+                boxG.field.setText("");
+            if (!letters.contains("H"))
+                boxI.field.setText("");
+            if (!letters.contains("J"))
+                boxJ.field.setText("");
+            if (!letters.contains("K"))
+                boxK.field.setText("");
+            if (!letters.contains("L"))
+                boxL.field.setText("");
+            if (!letters.contains("M"))
+                boxN.field.setText("");
+            if (!letters.contains("Q"))
+                boxQ.field.setText("");
+            if (!letters.contains("R"))
+                boxR.field.setText("");
+            if (!letters.contains("S"))
+                boxS.field.setText("");
+            if (!letters.contains("T"))
+                boxT.field.setText("");
+            if (!letters.contains("V"))
+                boxV.field.setText("");
+            if (!letters.contains("W"))
+                boxW.field.setText("");
+            if (!letters.contains("X"))
+                boxX.field.setText("");
+            if (!letters.contains("Y"))
+                boxY.field.setText("");
+            if (!letters.contains("Z"))
+                boxZ.field.setText("");
+            
+        }
+}
